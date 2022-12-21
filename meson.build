@@ -12,6 +12,16 @@ project(
 
 project_description = 'A HelloTriangle example using the String engine.'
 
+if get_option('buildtype') == 'release'
+    message('Building in Release mode')
+    release = ['-DSTRING_RELEASE']
+elif get_option('buildtype') == 'debug'
+    message('Building in Debug mode')
+    release = ['-DSTRING_DEBUG']
+endif
+
+add_project_arguments(release, language : 'cpp')
+
 build_args = [
 ]
 
